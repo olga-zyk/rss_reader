@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RssReader{% endblock %}
+
+{% block body %}
+    {% for item in items %}
+        <div class="row mr-2">
+            <div class="col-lg-12 ml-3 ">
+                <p><a href="{{ item.get_link() }}"> {{ item.get_title() | raw }} </a></p>
+                <p>  {{ item.get_description() | raw }} </p>
+                <p> {{ item.get_date() }} </p>
+            </div>
+        </div>
+        <hr/>
+    {% endfor %}
+
+{% endblock %}
