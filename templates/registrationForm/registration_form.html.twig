@@ -3,20 +3,22 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+    <div class="row justify-content-center align-items-center">
+        <div class="col-4">
+            <h1 class="mb-3 font-weight-normal">Register</h1>
+            {{ form_start(registrationForm) }}
 
-    <h1 class="mb-3 font-weight-normal">Register</h1>
-    {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
 
-    {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.Password) }}
 
-    {{ form_row(registrationForm.plainPassword) }}
+            {{ form_row(registrationForm.agreeTerms) }}
 
-    {{ form_row(registrationForm.agreeTerms) }}
+            {{ form_end(registrationForm) }}
 
-    {{ form_end(registrationForm) }}
-
-    <div class="form-group">
-    <a class="btn btn-secondary float-right" href="{{ path('home') }}">Go back</a>
+            <div class="form-group">
+                <a class="btn btn-lg btn-secondary float-right" href="{{ path('home') }}">Go back</a>
+            </div>
+        </div>
     </div>
-
 {% endblock %}

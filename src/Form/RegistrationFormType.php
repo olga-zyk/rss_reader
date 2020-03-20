@@ -28,7 +28,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('Password', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
@@ -44,8 +44,11 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('Submit', SubmitType::class)
-        ;
+            ->add('Submit', SubmitType::class, [
+                'attr' => array(
+                    'class' => 'btn btn-primary btn-lg'
+                )
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
