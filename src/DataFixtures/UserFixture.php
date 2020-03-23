@@ -7,15 +7,16 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-/**
- * @property UserPasswordEncoderInterface passwordEncoder
- */
 class UserFixture extends Fixture
 {
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private UserPasswordEncoderInterface $PasswordEncoder;
+
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
-        $this->passwordEncoder = $passwordEncoder;
-
+        $this->PasswordEncoder = $passwordEncoder;
     }
 
     /**
@@ -23,14 +24,18 @@ class UserFixture extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        $user = new User();
-        $user->setEmail('black.widow@gmail.com');
-        $user->setPassword($this->passwordEncoder->encodePassword(
-            $user,
-            '123qwe456rty'
-        ));
-        $manager->persist($user);
+        $chars = '0123456789abcdefghijklmnopqrstuvwxyz';
 
+        for ($i = 0; $i <= 9; $i++) {
+            $user = new User();
+            $user->setEmail(substr(str_shuffle($chars), 0, rand(7, 11)) . '@gmail.com');
+            $user->setPassword($this->PasswordEncoder->encodePassword(
+                $user,
+                substr(str_shuffle($chars), 0, rand(8, 12))
+            ));
+            $user->setRoles($user->getRoles());
+            $manager->persist($user);
+        }
 
         $manager->flush();
     }
