@@ -10,25 +10,19 @@
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
 
-                {% if app.user %}
-                    <div class="mb-3">
-                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                    </div>
-                {% endif %}
-
-                <h1 class="mb-3 font-weight-normal">Please sign in ✅</h1>
-                <label for="email">Email</label>
+                <h1 class="mt-5 font-weight-normal">Please sign in ✅</h1>
+                <label for="email" class="mt-3">Email</label>
                 <input type="email" value="{{ last_username }}" name="_email" id="email" class="form-control" required
                        autofocus>
 
-                <label for="password">Password</label>
+                <label for="password" class="mt-3">Password</label>
                 <input type="password" name="_password" id="password" class="form-control" required>
 
                 <input type="hidden" name="_csrf_token"
                        value="{{ csrf_token('authenticate') }}"
                 >
 
-                {#
+                {# TODO:
                     Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
                     See https://symfony.com/doc/current/security/remember_me.html
 
@@ -39,7 +33,7 @@
                     </div>
                 #}
 
-                <button class="btn btn-lg btn-primary" type="submit" style="margin-top: 10px">
+                <button class="btn btn-lg btn-primary mt-4" type="submit" style="margin-top: 10px">
                     Login
                 </button>
             </form>
