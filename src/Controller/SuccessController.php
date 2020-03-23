@@ -12,8 +12,6 @@ class SuccessController extends AbstractController
      */
     public function index()
     {
-        return $this->render('success/success.html.twig', [
-            'controller_name' => 'SuccessController',
-        ]);
+        return $this->render('success/success.html.twig');
     }
 }
